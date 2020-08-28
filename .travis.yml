@@ -6,3 +6,7 @@ jdk:
   - openjdk8
 install: true
 script: mvn install
+
+before_deploy:
+  - docker build -f Dockerfile -t docker-simple-cicd .
+  - docker run -p 8888:8888 docker-simple-cicd
